@@ -1,0 +1,51 @@
+<m-container>
+  <br /><br />
+  <button class="pure-button" (click)="getLocationWeather()">
+    Get Current Location Weather Data
+  </button>
+  <button class="pure-button" (click)="getNYCWeather()">
+    Get NYC Weather Data
+  </button>
+  <h4 *ngIf="weatherList.length > 0">Weather in {{address}}</h4>
+  
+  
+  <m-weather  *ngFor="let day of weatherList" [dayWeather]="day"></m-weather>
+  
+  <m-card
+    *ngFor="let day of weatherList"
+    [header]="getDayFromDate(day.time)"
+    [subheader]="day.time"
+    [imageurl]="getImageFromRain(day)"
+  >
+    <table class="pure-table">
+      <tr>
+        <td>Precipitation</td>
+        <td>{{ day.precipitation }}</td>
+      </tr>
+      <tr>
+        <td>Temperature Min</td>
+        <td>{{ day.temperatureMin }}</td>
+      </tr>
+      <tr>
+        <td>Temperature Min</td>
+        <td>{{ day.temperatureMax }}</td>
+      </tr>
+      <tr>
+        <td>Wind Direction</td>
+        <td>{{ day.windDirection }}</td>
+      </tr>
+      <tr>
+        <td>Wind Speed</td>
+        <td>{{ day.windspeedMean }}</td>
+      </tr>
+      <tr>
+        <td>Rain Spot</td>
+        <td>{{ day.rainSpot }}</td>
+      </tr>
+      <tr>
+        <td>Relative Humidity</td>
+        <td>{{ day.relativeHumidityMean }}</td>
+      </tr>
+    </table>
+  </m-card>
+</m-container>
